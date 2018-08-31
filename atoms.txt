@@ -1,0 +1,113 @@
+Diyads:
+
++       num, num        addition                                        |
+        str, str        concat                                          |
+-       num, num        subtraction                                     |
+        str, num        cut                                             |
+        str, str        removal                                         |
+*       num, num        multiplication                                  |
+        str, num        duplicate                                       |
+        str, str        riffle                                          |
+/       num, num        floating point division                         |	integer division (remainder in b)
+        str, any        to uppercase                                    |
+%       num, num        modulo                                          |
+        str, any        to lowercase                                    |
+@       num, num        integer division                                |
+&       num, num        and gate                                        |	bitwise and
+^       num, num        or gate                                         |	bitwise or
+=       any, any        equal to                                        |	bitwise xor
+>       num, num        greater than                                    |	shift right
+<       num, num        less than                                       |	shift left
+E       num, num        exponent                                        |
+G       num, num        greatest common factor                          |	combination w/out rep
+L       num, num        least common multiple                           |	permutation w/out rep
+R       num, num        random integer in range                         |
+t       any, any        ternary (a1 == a2 ? a1 : a2)                    |
+u       num, num        logarithm with base                             |
+
+Monads:
+
+$       any             push                                            |
+}       any             print with newline                              |	print
+~       num             not gate                                        |	bitwise not
+        str             swap case                                       |
+B       num             nth fibonacci number                            |
+C       num             ceiling function                                |
+        str             decompress string                               |
+D       num             get by index                                    |
+F       num             factorial                                       |
+H       num             halve                                           |	double
+J       num             check if integer                                |
+K       num             three fourths                                   |
+M       num             split by number                                 |
+N       any             to number                                       |
+P       num             check if prime                                  |
+Q       num             quarter                                         |	quadruple
+S       num             square root                                     |
+Ts      num             sine                                            |
+Tc      num             cosine                                          |
+Tt      num             tangent                                         |
+U       any             length                                          |
+X       num             push range                                      |
+c       num             cube                                            |
+d       num             digital root                                    |
+f       num             floor                                           |
+h       num             double                                          |
+i       num             negative                                        |
+k       num             reciprocal                                      |
+l       num             natural logarithm                               |
+m       any             split by character                              |
+n       any             to string                                       |
+p       any             to number                                       |
+s       num             square                                          |
+v       num             absolute value                                  |
+x       num             cut list                                        |
+z       num             divide by ten                                   |
+
+Nilads:
+
+'   '                   comment                                         |
+"   "                   string                                          |
+`                       char                                            |
+<space>                 no-op                                           |
+<newline>               no-op                                           |
+<tab>                   no-op                                           |
+|                       separator                                       |
+Vp                      pi                                              |
+Ve                      e                                               |
+Vh                      phi                                             |
+Vs                      square root of 2                                |
+q                       source code                                     |
+,                       pull                                            |
+,<atom>                 pull arguments and push result                  |
+#                       pop                                             |
+:                       dup                                             |
+\                       zero out                                        |	clear list
+;                       halt                                            |
+.                       rot                                             |
+{                       reset                                           |
+?                       set store                                       |
+?<num>                  set store by index                              |
+?!                      change function index                           |
+!                       get store                                       |
+!<num>                  get store by index                              |
+!?                      run program at function index                   |
+!_                      change comparison for _                         |
+[   ]                   while not zero                                  |
+_   _                   if zero or comparision                          |
+(   )                   if not zero                                     |
+A                       average                                         |
+I                       reverse                                         |
+W                       max                                             |
+Y                       product                                         |
+Z                       print list with newline                         |	print list
+a                       sort alphabetically                             |
+b                       switch mode                                     |
+e                       sort numerically                                |
+g                       swap                                            |
+r                       random float                                    |
+w                       min                                             |
+y                       sum                                             |
+O<atom>                 map atom over every nth item on list            |
+j                       replace if equal to on list                     |
+o<atom>                 map atom over every nth item on list            |
