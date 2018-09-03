@@ -282,12 +282,12 @@ $(function() {
             var parse = c => {
                 if (mode) {
                     if (niladSet_1[c] && c != 'O' && c != 'j' && c != 'o') a = niladSet_1[c]();
-                    if (monadSet_1[c]) a = monad(a, c);
+                    if (monadSet_1[c]) a = monadSet_1[c](a);
                     if (diyadSet_1[c]) a = diyad(a, b, c);
                     if (c == 'O' || c == 'j' || c == 'o') a = niladSet_1[c](a, b);
                 } else {
                     if (niladSet[c] && c != 'O' && c != 'j' && c != 'o') a = niladSet[c]();
-                    if (monadSet[c]) a = monad(a, c);
+                    if (monadSet[c]) a = monadSet[c](a);
                     if (diyadSet[c]) a = diyad(a, b, c);
                     if (c == 'O' || c == 'j' || c == 'o') a = niladSet[c](a, b);
                 }
@@ -321,15 +321,6 @@ $(function() {
                 }
                 if (diyadSet_1[c] && mode) return diyadSet_1[c](a, b);
                 if (diyadSet[c] && !mode) return diyadSet[c](a, b);
-                else return this.a;
-            }
-            
-            function monad(a, c) {
-                if (!n(program[ip - 1])) a = p(program[ip - 1]);
-                else if (!n(program[ip - 1])) a = p(program[ip - 1]);
-                else this.a = a;
-                if (monadSet_1[c] && mode) return monadSet_1[c](a);
-                if (monadSet[c] && !mode) return monadSet[c](a);
                 else return this.a;
             }
             
