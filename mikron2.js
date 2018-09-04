@@ -2,7 +2,7 @@ $(function() {
     var version = 2.7,
         container = $('div.console'),
         controller = container.console({
-            promptLabel: 'Σ ', //► Σ Ω
+            promptLabel: 'Σ ', // It's a sideways M
             commandValidate: line => {
                 if (line === '') return false;
                 else return true;
