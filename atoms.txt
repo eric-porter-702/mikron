@@ -108,6 +108,6 @@ g                       swap                                            |
 r                       random float                                    |
 w                       min                                             |
 y                       sum                                             |
-O<atom>                 map atom over every nth item on list            |
+O<atom>                 map atom on each ath item on list args(b, list) |
 j                       replace if equal to on list                     |
-o<atom>                 map atom over every nth item on list            |
+o<atom>                 As "O" but with args as (list, list)            |
