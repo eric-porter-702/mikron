@@ -43,6 +43,7 @@ N       any             to number                                       |
 P       num             check if prime                                  |
 Q       num             quarter                                         |	quadruple
 S       num             square root                                     |
+T       num             convert to radians                              |       convert to degrees
 Ts      num             sine                                            |
 Tc      num             cosine                                          |
 Tt      num             tangent                                         |
