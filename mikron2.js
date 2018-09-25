@@ -483,7 +483,7 @@ $(function() {
                     if (program[ip] == 's') return Math.sin(x);
                     else if (program[ip] == 'c') return Math.cos(x);
                     else if (program[ip] == 't') return Math.tan(x);
-                    else return x;
+                    else return (Math.PI * x) / 180;
                 },
                 'U': x => (list.length || tS(x).length),
                 'X': x => {
@@ -544,7 +544,7 @@ $(function() {
                     if (program[ip] == 's') return Math.sin(x);
                     else if (program[ip] == 'c') return Math.cos(x);
                     else if (program[ip] == 't') return Math.tan(x);
-                    else return x;
+                    else return (x * 180) / Math.PI;
                 },
                 'U': x => (list.length || tS(x).length),
                 'X': x => {
