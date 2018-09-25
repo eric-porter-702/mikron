@@ -33,7 +33,6 @@ $       any             push                                            |
         str             swap case                                       |
 B       num             nth fibonacci number                            |
 C       num             ceiling function                                |
-        str             decompress string                               |
 D       num             get by index                                    |
 F       num             factorial                                       |
 H       num             halve                                           |	double
@@ -85,7 +84,7 @@ q                       source code                                     |
 \                       zero out                                        |	clear list
 ;                       halt                                            |
 .                       rot                                             |
-{                       reset                                           |
+{                       restore a and b values                          |
 ?                       set store                                       |
 ?<num>                  set store by index                              |
 ?!                      change function index                           |
