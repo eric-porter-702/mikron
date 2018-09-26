@@ -53,7 +53,7 @@ $(function() {
             autofocus: false,
             animateScroll: true,
             promptHistory: true,
-            welcomeMessage: "═══[mikron 2]═══"
+            welcomeMessage: "═══[mikron]═══"
         });
     var input,
         list = [],
@@ -209,7 +209,7 @@ $(function() {
         }
         else if (command[0] == "version") {
             return [
-                `mikron2 console version ${version}
+                `mikron console version ${version}
                         powered by js and magic`, 0
             ];
         }
@@ -230,25 +230,24 @@ $(function() {
             toRun = runfile = a1 = a2 = undefined;
             return ["> memory purged", 0];
         }
-		else if (command[0] == "atoms") {
-			window.open("atoms.txt", "_blank");
-			return ["", 0];
+	else if (command[0] == "atoms") {
+		window.open("atoms.txt", "_blank");
+		return ["", 0];
+	}
+	else if (command[0] == "file") {
+		$("#file").trigger("click");
+		return ["", 0];
+	} else {
+		if (wrong >= 5) {
+			reply = replies[~~(Math.random() * (replies.length))];
+			wrong = 0;
+			return [`# Unknown command: ${command[0]}\n\n${reply}`, 1];
 		}
-		else if (command[0] == "file") {
-			$("#file").trigger("click");
-			return ["", 0];
+		else {
+			wrong++;
+			return [`# Unknown command: ${command[0]}`, 1];
 		}
-        else {
-			if (wrong >= 5) {
-				reply = replies[~~(Math.random() * (replies.length))];
-				wrong = 0;
-				return [`# Unknown command: ${command[0]}\n\n${reply}`, 1];
-			}
-			else {
-				wrong++;
-				return [`# Unknown command: ${command[0]}`, 1];
-			}
-		}
+	}
     }
 
     function format(program) {
