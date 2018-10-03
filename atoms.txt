@@ -77,6 +77,9 @@ Vp                      pi                                              |
 Ve                      e                                               |
 Vh                      phi                                             |
 Vs                      square root of 2                                |
+Vd                      get current day as number                       |
+Vm                      get current month as number                     |       get current month as string
+Vy                      get current year as number                      |
 q                       source code                                     |
 ,                       pull                                            |
 ,<atom>                 pull arguments and push result                  |
