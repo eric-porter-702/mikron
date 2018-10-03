@@ -595,6 +595,15 @@ $(function() {
                         case 's':
                             return Math.SQRT2;
                             break;
+						case 'd':
+							Date d = new Date();
+							return d.getDate();
+						case 'm':
+							Date d = new Date();
+							return d.getMonth();
+						case 'y':
+							Date d = new Date();
+							return d.getFullYear();
                         default:
                             return a;
                     }
@@ -818,6 +827,29 @@ $(function() {
                         case 's':
                             return Math.SQRT2;
                             break;
+						case 'd':
+							Date d = new Date();
+							return d.getDate();
+						case 'm':
+							Date d = new Date();
+							const months = [
+								"January",
+								"February",
+								"March",
+								"April",
+								"May",
+								"June",
+								"July",
+								"August",
+								"September",
+								"October",
+								"November",
+								"December"
+							];
+							return months[d.getMonth()];
+						case 'y':
+							Date d = new Date();
+							return d.getFullYear();
                         default:
                             return a;
                     }
