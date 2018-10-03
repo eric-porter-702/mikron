@@ -1,5 +1,5 @@
 $(function() {
-    var version = "v1.0",
+    var version = "v1.1",
         container = $('div.console'),
         controller = container.console({
             promptLabel: 'Σ ', // It's a sideways M
