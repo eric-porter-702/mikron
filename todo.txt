@@ -1,0 +1,11 @@
+v2.0 Release Features and Ideas
++	Integrate stack as part of variables by wrapping them in an array when needed
++	Add one more reserved variable as z
++	Rename variables to x y z
++	Easier way of creating more variables with ! and ? commands
+-	Remove g atom and change it to something more useful
+?	Triads
++	Better variable switching
++	Add better functionality to diyads to work with strings and multi-digit numbers
++	Better UI for interpreter
+?	Custom encoding and code page
