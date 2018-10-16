@@ -1,3 +1,10 @@
+**v2.0**
+* Diyads now work with strings, characters, and multidigit numbers
+* `@` atom now swaps variables
+* `g` atom now pushes `[1, 2, ... , length(a)]` to the list
+* Source code is now much more readable and polished
+* More refactoring may come in the future
+
 **v1.1**
 * Added `Vd`, `Vm`, and `Vy` atoms
 * `Vd` gets the current day of the month
