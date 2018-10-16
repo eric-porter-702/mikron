@@ -12,7 +12,6 @@ Diyads:
         str, any        to uppercase                                    |
 %       num, num        modulo                                          |
         str, any        to lowercase                                    |
-@       num, num        integer division                                |
 &       num, num        and gate                                        |	bitwise and
 ^       num, num        or gate                                         |	bitwise or
 =       any, any        equal to                                        |	bitwise xor
@@ -43,15 +42,16 @@ N       any             to number                                       |
 P       num             check if prime                                  |
 Q       num             quarter                                         |	quadruple
 S       num             square root                                     |
-T       num             convert to radians                              |       convert to degrees
+T       num             convert to radians                              |   convert to degrees
 Ts      num             sine                                            |
 Tc      num             cosine                                          |
 Tt      num             tangent                                         |
 U       any             length                                          |
-X       num             push range                                      |
+X       num             push [1, ..., a]                                |
 c       num             cube                                            |
 d       num             digital root                                    |
 f       num             floor                                           |
+g       num             push [1, ..., length(a)]                        |
 h       num             double                                          |
 i       num             negative                                        |
 k       num             reciprocal                                      |
@@ -69,6 +69,7 @@ Nilads:
 '   '                   comment                                         |
 "   "                   string                                          |
 `                       char                                            |
+@                       swap                                            |
 <space>                 no-op                                           |
 <newline>               no-op                                           |
 <tab>                   no-op                                           |
@@ -78,7 +79,7 @@ Ve                      e                                               |
 Vh                      phi                                             |
 Vs                      square root of 2                                |
 Vd                      get current day as number                       |
-Vm                      get current month as number                     |       get current month as string
+Vm                      get current month as number                     |   get current month as string
 Vy                      get current year as number                      |
 q                       source code                                     |
 ,                       pull                                            |
@@ -107,7 +108,6 @@ Z                       print list with newline                         |	print 
 a                       sort alphabetically                             |
 b                       switch mode                                     |
 e                       sort numerically                                |
-g                       swap                                            |
 r                       random float                                    |
 w                       min                                             |
 y                       sum                                             |
