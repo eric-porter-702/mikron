@@ -3,7 +3,7 @@ $(function() {
     var container = $('div.console');
     var controller = container.console({
         promptLabel: 'Σ ', // It's a sideways 'M'
-        autofocus: false,
+        autofocus: true,
         animateScroll: true,
         promptHistory: true,
         welcomeMessage: "═══[mikron]═══",
