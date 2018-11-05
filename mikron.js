@@ -432,8 +432,28 @@ $(function() {
                 'z': x => x / 10,
             };
             var niladSet = {
-                "'": () => eval(`ip++;var comment="";for(;;){var str=program.charAt(ip);if(str=="'")break;comment+=str;ip++}a`),
-                '"': () => eval(`ip++;var temp="";for(;;){var str=program.charAt(ip);if(str=='"')break;temp+=str;ip++}temp`),
+                "'": () => {
+                    ip++;
+                    var comment = "";
+                    for (;;) {
+                        var str = program[ip];
+                        if (str == "'") break;
+                        comment += str;
+                        ip++;
+                    }
+                    return a;
+                },
+                '"': () => {
+                    ip++;
+                    var temp = "";
+                    for (;;) {
+                        var str = program[ip];
+                        if (str == '"') break;
+                        temp += str;
+                        ip++;
+                    }
+                    return temp;
+                },
                 '`': () => program[++ip],
                 ' ': () => a,
                 '\n': () => a,
@@ -489,12 +509,12 @@ $(function() {
                 '@': () => ([b, a] = [a, b], a),
                 ',': () => {
                     ip = program.length == 1 ? ip : ip + 1;
-                    if (monadSet[program.charAt(ip)]) {
-                        list.push(monadSet[program.charAt(ip)](list.pull()));
+                    if (monadSet[program[ip]]) {
+                        list.push(monadSet[program[ip]](list.pull()));
                         return a;
                     }
-                    else if (diyadSet[program.charAt(ip)]) {
-                        list.push(diyadSet[program.charAt(ip)](list.pull(), list.pull()));
+                    else if (diyadSet[program[ip]]) {
+                        list.push(diyadSet[program[ip]](list.pull(), list.pull()));
                         return a;
                     }
                     else {
@@ -503,7 +523,16 @@ $(function() {
                     }
                 },
                 '#': () => (list.pop(), a),
-                ':': () => eval("if(list.length!==0){var dup=list.pull();list.push(dup,dup);a}else{b=a;a}"),
+                ':': () => {
+                    if (list.length !== 0) {
+                        var dup = list.pull();
+                        list.push(dup, dup);
+                        return a;
+                    } else {
+                        b = a;
+                        return a;
+                    }
+                },
                 '\\': () => {
                     if (mode) {
                         list = [];
@@ -518,11 +547,11 @@ $(function() {
                 '{': () => (reset(), a),
                 '?': () => {
                     ip = program.length == 1 ? ip : ip + 1;
-                    if (!n(program.charAt(ip))) {
-                        cmdStore[program.charAt(ip)] = a;
+                    if (!n(program[ip])) {
+                        cmdStore[program[ip]] = a;
                         return a;
                     }
-                    else if (program.charAt(ip) == '!') {
+                    else if (program[ip] == '!') {
                         funIndex = b;
                         return a;
                     }
@@ -533,16 +562,52 @@ $(function() {
                 },
                 '!': () => {
                     ip = program.length == 1 ? ip : ip + 1;
-                    if (!n(program.charAt(ip))) {
-                        a = cmdStore[program.charAt(ip)];
+                    function cmdDiyad(a, b, c) {
+                        function getString(str) {
+                            const re = /"(.*?)"/g, result = [];
+                            let current;
+                            while (current = re.exec(str)) result.push(current.pop());
+                            if (!str.includes('"')) return [];
+                            else return result.length > 0 ? result : [str];
+                        }
+                        var temp;
+                        stringStoreList = getString(cmdProgram).reverse();
+                        charStoreList = cmdProgram.match(/`./g);
+                        charStoreList = charStoreList === null ? charStoreList : charStoreList.map(z => z.replace(/`/g, '')).reverse();
+                        numberStoreList = cmdcmdProgram.match(/\d+/g);
+                        numberStoreList = numberStoreList === null ? numberStoreList : numberStoreList.map(z => p(z)).reverse();
+                        if (cmdProgram[ip - 1] == '"' && d(cmdProgram[ip - 1])) a = stringStoreList.pop();
+                        else if (cmdProgram[ip - 2] == '`' && cmdProgram[ip - 1] != '"' && d(cmdProgram[ip - 1])) a = charStoreList.pop();
+                        else if (!n(p(cmdProgram[ip - 1])) && d(cmdProgram[ip - 1])) a = numberStoreList.pop();
+                        else this.a = a;
+                        if (cmdProgram[ip + 1] == '"' && d(cmdProgram[ip + 1])) {
+                            temp = b = stringStoreList.pop();
+                            ip += temp.length + 3;
+                        } else if (cmdProgram[ip + 1] == '`' && d(cmdProgram[ip + 1])) {
+                            b = charStoreList.pop();
+                            ip += 3;
+                        } else if (!n(p(cmdProgram[ip + 1])) && d(cmdProgram[ip + 1])) {
+                            temp = b = numberStoreList.pop();
+                            ip += tS(temp).length;
+                        } else this.b = b;
+                        if (diyadSet[c]) return diyadSet[c](a, b);
+                        else return this.a;
+                    }
+                    if (!n(program[ip])) {
+                        a = cmdStore[program[ip]];
                         a = !n(a) ? (Number.isInteger(a) ? p(a) : pf(a)) : a;
                         return a;
                     }
-                    else if (program.charAt(ip) == '?') {
+                    if (!n(program[ip])) {
+                        a = cmdStore[program[ip]];
+                        a = !n(a) ? (Number.isInteger(a) ? p(a) : pf(a)) : a;
+                        return a;
+                    }
+                    else if (program[ip] == '?') {
                         var cmdProgram = tS(cmdStore[funIndex]);
                         for (var ip2 = 0; ip2 < cmdProgram.length; ip2++) {
                             if (done) break;
-                            var cc = cmdProgram.charAt(ip2);
+                            var cc = cmdProgram[ip2];
                             if (!n(p(cc)) && !n(cmdProgram[ip2])) {
                                 if (!n(p(cmdProgram[ip2 - 1])) && !n(a)) {
                                     a *= 10;
@@ -550,14 +615,14 @@ $(function() {
                                 }
                                 else a = p(cc);
                             }
-                            if (diyadSet[cc]) a = diyad(a, b, c);
-                            if (monadSet[cc]) a = monad(a, c);
+                            if (diyadSet[cc]) a = cmdDiyad(a, b, cc);
+                            if (monadSet[cc]) a = monadSet[cc](a);
                             if (niladSet[cc]) a = niladSet[cc]();
                             if (maxLoop >= 999) niladSet[';']();
                         }
                         return a;
                     }
-                    else if (program.charAt(ip) == '_') {
+                    else if (program[ip] == '_') {
                         ip--;
                         compareTo = cmdStore[funIndex];
                         return a;
@@ -672,9 +737,9 @@ $(function() {
                     if (n(y)) y = 1;
                     for (var counter = y - 1; counter < list.length; counter += y) {
                         temp = a;
-                        if (niladSet[program.charAt(ip)]) list[counter] = niladSet[program.charAt(ip)]();
-                        if (monadSet[program.charAt(ip)]) list[counter] = monadSet[program.charAt(ip)](list[counter]);
-                        if (diyadSet[program.charAt(ip)]) list[counter] = diyadSet[program.charAt(ip)](list[counter], a);
+                        if (niladSet[program[ip]]) list[counter] = niladSet[program[ip]]();
+                        if (monadSet[program[ip]]) list[counter] = monadSet[program[ip]](list[counter]);
+                        if (diyadSet[program[ip]]) list[counter] = diyadSet[program[ip]](list[counter], a);
                         a = temp;
                     }
                     return a;
@@ -690,9 +755,9 @@ $(function() {
                     if (n(y)) y = 1;
                     for (var counter = y - 1; counter < list.length; counter += y) {
                         temp = a;
-                        if (niladSet[program.charAt(ip)]) list[counter] = niladSet[program.charAt(ip)]();
-                        if (monadSet[program.charAt(ip)]) list[counter] = monadSet[program.charAt(ip)](list[counter]);
-                        if (diyadSet[program.charAt(ip)]) list[counter] = diyadSet[program.charAt(ip)](list[counter], list[counter]);
+                        if (niladSet[program[ip]]) list[counter] = niladSet[program[ip]]();
+                        if (monadSet[program[ip]]) list[counter] = monadSet[program[ip]](list[counter]);
+                        if (diyadSet[program[ip]]) list[counter] = diyadSet[program[ip]](list[counter], list[counter]);
                         a = temp;
                     }
                     return a;
