@@ -1,5 +1,5 @@
 $(function() {
-    var version = "v2.0";
+    var version = "v2.2";
     var container = $('div.console');
     var controller = container.console({
         promptLabel: 'Σ ', // It's a sideways 'M'
@@ -243,7 +243,10 @@ $(function() {
             var parse = c => {
                 if (niladSet[c] && c != 'O' && c != 'j' && c != 'o') a = niladSet[c]();
                 if (monadSet[c]) a = monadSet[c](a);
-                if (diyadSet[c]) a = diyad(a, b, c);
+                if (diyadSet[c]) {
+					a = diyad(a, b, c);
+					b = temp;
+				}
                 if (c == 'O' || c == 'j' || c == 'o') a = niladSet[c](a, b);
             };
             var diyadSet = {
@@ -763,6 +766,7 @@ $(function() {
                     return a;
                 }
             };
+			var temp;
             function diyad(a, b, c) {
                 function getString(str) {
                     const re = /"(.*?)"/g, result = [];
@@ -771,7 +775,6 @@ $(function() {
                     if (!str.includes('"')) return [];
                     else return result.length > 0 ? result : [str];
                 }
-                var temp;
                 stringList = getString(program).reverse();
                 charList = program.match(/`./g)
                 charList = charList === null ? charList : charList.map(z => z.replace(/`/g, '')).reverse();
@@ -782,13 +785,16 @@ $(function() {
                 else if (!n(p(program[ip - 1])) && d(program[ip - 1])) a = numberList.pop();
                 else this.a = a;
                 if (program[ip + 1] == '"' && d(program[ip + 1])) {
-                    temp = b = stringList.pop();
+                    temp = b;
+					b = stringList.pop();
                     ip += temp.length + 3;
                 } else if (program[ip + 1] == '`' && d(program[ip + 1])) {
-                    b = charList.pop();
+                    temp = b;
+					b = charList.pop();
                     ip += 3;
                 } else if (!n(p(program[ip + 1])) && d(program[ip + 1])) {
-                    temp = b = numberList.pop();
+                    temp = b;
+					b = numberList.pop();
                     ip += tS(temp).length;
                 } else this.b = b;
                 if (diyadSet[c]) return diyadSet[c](a, b);
