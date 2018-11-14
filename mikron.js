@@ -789,7 +789,7 @@ $(function() {
                     ip += 3;
                 } else if (!n(p(program[ip + 1])) && d(program[ip + 1])) {
                     temp = b = numberList.pop();
-                    ip += tS(temp).length;
+                    ip += tS(temp).length + 1;
                 } else this.b = b;
                 if (diyadSet[c]) return diyadSet[c](a, b);
                 else return this.a;
