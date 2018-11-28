@@ -1,0 +1,30 @@
+EXAMPLE PROGRAMS:
+
+Text Output:
+
+    "Hello, world!"
+    "Wel"+"come!"
+    
+Math:
+
+    2+2
+    45/9
+
+Truth Machines:
+
+    _};_[1}] 'the standard'
+    __[1}] 'implicit output of zero'
+    _[1}] 'implict ending of _ (if zero)'
+    [}] 'if not zero only if input is 0 or 1'
+
+Self Scoring Program:
+
+    7*2@" bytes"@+
+
+Palindrome Detector:
+
+    :I=
+    :I=I: 'also a palindrome'
+
+
+MORE SOON

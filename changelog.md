@@ -1,3 +1,11 @@
+**v3.0**
+* Diyads and monads work much more correctly with literals
+* Changed the engine for running programs from direct reading to lexing and an atom list
+* Source has been refactored more
+* `q` atom has been changed from getting source code to enqueue
+* `,` atom has a alt function to dequeue
+* Errors show the atom that errors out and the number of the atom (0-indexed)
+
 **v2.0**
 * Diyads now work with strings, characters, and multidigit numbers
 * `@` atom now swaps variables
