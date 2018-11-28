@@ -3,4 +3,4 @@ A minimalist, esoteric programming language written in JavaScript (JQuery) using
 Uses pure ASCII to achieve its goals.
 [JQuery Console code created by chrisdone](https://github.com/chrisdone/jquery-console)
 
-**Current Version:** v2.0
+**Current Version:** v3.0

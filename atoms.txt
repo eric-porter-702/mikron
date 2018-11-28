@@ -59,6 +59,7 @@ l       num             natural logarithm                               |
 m       any             split by character                              |
 n       any             to string                                       |
 p       any             to number                                       |
+q       any             enqueue                                         |
 s       num             square                                          |
 v       num             absolute value                                  |
 x       num             cut list                                        |
@@ -81,8 +82,7 @@ Vs                      square root of 2                                |
 Vd                      get current day as number                       |
 Vm                      get current month as number                     |   get current month as string
 Vy                      get current year as number                      |
-q                       source code                                     |
-,                       pull                                            |
+,                       pull                                            |   dequeue
 ,<atom>                 pull arguments and push result                  |
 #                       pop                                             |
 :                       dup                                             |
