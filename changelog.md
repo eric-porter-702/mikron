@@ -1,3 +1,6 @@
+**v3.1**
+* `!` and `?` atoms have had their functional mechanisms removed. They are only used for working with the storing array.
+
 **v3.0**
 * Diyads and monads work much more correctly with literals
 * Changed the engine for running programs from direct reading to lexing and an atom list

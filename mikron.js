@@ -1,5 +1,5 @@
 $(function() {
-    var version = "v3.0";
+    var version = "v3.1";
     var container = $('div.console');
     // main controller for interpreter (from jquery.console.js)
     var controller = container.console({
@@ -623,32 +623,22 @@ $(function() {
         '.': () => (list = list.slice(list.length - 1).concat(list.slice(0, list.length - 1)), a),
         '{': () => (reset(arg0, arg1), a),
         '?': () => {
-            ip = program.length == 1 ? ip : ip + 1;
+            ip = atoms.length == 1 ? ip : ip + 1;
             if (!n(atoms[ip].value)) {
                 cmdStore[atoms[ip].value] = a;
                 return a;
-            }
-            else if (atoms[ip].value == '!') {
-                funIndex = b;
-                return a;
-            }
-            else {
+            } else {
                 cmdStore[0] = a;
                 return a;
             }
         },
         '!': () => {
-            ip = program.length == 1 ? ip : ip + 1;
+            ip = atoms.length == 1 ? ip : ip + 1;
             if (!n(atoms[ip].value)) {
                 a = cmdStore[atoms[ip].value];
                 a = !n(a) ? (Number.isInteger(a) ? p(a) : pf(a)) : a;
                 return a;
-            } else if (atoms[ip].value == '_') {
-                ip--;
-                compareTo = cmdStore[funIndex];
-                return a;
-            }
-            else return cmdStore[0];
+            } else return cmdStore[0];
         },
         '[': () => {
             if (a === 0) ip = loop[ip];

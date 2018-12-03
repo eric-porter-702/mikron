@@ -92,13 +92,10 @@ Vy                      get current year as number                      |
 {                       restore a and b values                          |
 ?                       set store                                       |
 ?<num>                  set store by index                              |
-?!                      change function index                           |
 !                       get store                                       |
 !<num>                  get store by index                              |
-!?                      run program at function index                   |
-!_                      change comparison for _                         |
 [   ]                   while not zero                                  |
-_   _                   if zero or comparision                          |
+_   _                   if zero                                         |
 (   )                   if not zero                                     |
 A                       average                                         |
 I                       reverse                                         |
