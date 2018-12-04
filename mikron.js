@@ -1,5 +1,5 @@
 $(function() {
-    var version = "v3.1";
+    var version = "v3.2";
     var container = $('div.console');
     // main controller for interpreter (from jquery.console.js)
     var controller = container.console({
@@ -621,7 +621,16 @@ $(function() {
         },
         ';': () => (done = true, a),
         '.': () => (list = list.slice(list.length - 1).concat(list.slice(0, list.length - 1)), a),
-        '{': () => (reset(arg0, arg1), a),
+        '{': () => {
+            if (mode) {
+                a = prompt("Type a value for stdin:");
+                if (d(a)) a = !n(a) ? (Number.isInteger(a) ? p(a) : pf(a)) : a;
+                return a;
+            } else {
+                reset(arg0, arg1)
+                return a;
+            }
+        },
         '?': () => {
             ip = atoms.length == 1 ? ip : ip + 1;
             if (!n(atoms[ip].value)) {

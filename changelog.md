@@ -1,3 +1,6 @@
+**v3.2**
+* `{` atom's alternate function prompts the user for input. This works like stdin and uses Window.prompt.
+
 **v3.1**
 * `!` and `?` atoms have had their functional mechanisms removed. They are only used for working with the storing array.
 

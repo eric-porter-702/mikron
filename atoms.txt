@@ -89,7 +89,7 @@ Vy                      get current year as number                      |
 \                       zero out                                        |	clear list
 ;                       halt                                            |
 .                       rot                                             |
-{                       restore a and b values                          |
+{                       restore a and b values                          |   get input from stdin
 ?                       set store                                       |
 ?<num>                  set store by index                              |
 !                       get store                                       |
