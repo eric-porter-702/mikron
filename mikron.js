@@ -1,5 +1,5 @@
 $(function() {
-    var version = "v3.2";
+    var version = "v3.2.1";
     var container = $('div.console');
     // main controller for interpreter (from jquery.console.js)
     var controller = container.console({
@@ -704,17 +704,10 @@ $(function() {
         },
         'W': () => Math.max(...list),
         'Y': () => {
-            if (list.length !== 0) {
-                var pro = 1;
-                for (var q = 0; q < list.length; q++) pro *= list[q];
-                return p(pro);
-            }
-            else {
-                var pro = 1,
-                    temp = [...tS(a)].map(Number);
-                for (var q = 0; q < temp.length; q++) pro *= temp[q];
-                return p(pro);
-            }
+            if (list.length !== 0)
+                return list.reduce((q, r) => q * r, 1);
+            else
+                return [...tS(a)].map(Number).reduce((q, r) => q * r, 1);
         },
         'Z': () => {
             if (mode) {
@@ -731,33 +724,20 @@ $(function() {
         'r': () => Math.random(),
         'w': () => Math.min(...list),
         'y': () => {
-            if (list.length !== 0) {
-                var sum;
-                if (n(list[0]) || typeof list[0] == "string") {
-                    sum = "";
-                    for (var q = 0; q < list.length; q++) sum += list[q];
-                }
-                else {
-                    sum = 0;
-                    for (var q = 0; q < list.length; q++) sum += list[q];
-                }
-                return p(sum);
-            }
+            if (list.length !== 0)
+                return typeof list[0] == "string" ? list.reduce((q, r) => q + r, '') : list.reduce((q, r) => q + r, 0);
             else {
                 var sum, temp = [...tS(a)];
                 if (!n(a)) {
                     temp = temp.map(Number);
-                    sum = 0;
-                }
-                else sum = "";
-                for (var q = 0; q < temp.length; q++) sum += temp[q];
-                return p(sum);
+                    return temp.reduce((q, r) => q + r, 0);
+                } else return temp.reduce((q, r) => q + r, 0);
             }
         },
         'O': (x, y) => {
             ip++;
             var temp;
-            if (n(y)) y = 1;
+            if (n(y) || y % 1 != 0) y = 1;
             for (var counter = y - 1; counter < list.length; counter += y) {
                 temp = a;
                 if (niladSet[atoms[ip].value]) list[counter] = niladSet[atoms[ip].value]();
@@ -775,7 +755,7 @@ $(function() {
         'o': (x, y) => {
             ip++;
             var temp;
-            if (n(y)) y = 1;
+            if (n(y) || y % 1 != 0) y = 1;
             for (var counter = y - 1; counter < list.length; counter += y) {
                 temp = a;
                 if (niladSet[atoms[ip].value]) list[counter] = niladSet[atoms[ip].value]();

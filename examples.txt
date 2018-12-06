@@ -26,5 +26,9 @@ Palindrome Detector:
     :I=
     :I=I: 'also a palindrome'
 
+Approximation of e:
+
+    9XoFoky+1 'to five decimal places'
+    100XoFoky+1 'higher numbers are more accurate'
 
 MORE SOON
